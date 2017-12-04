@@ -8,9 +8,6 @@ fun main(args: Array<String>) {
 
 fun solve(passphrases: List<String>): Int {
 
-  /*println("passphrases to check:")
-  passphrases.forEach { println("${it}") }*/
-
   var numberOfValidPassphrases = 0
   passphrases.forEach {
     // Split each passphrase into its components
