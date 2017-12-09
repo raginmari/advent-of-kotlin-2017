@@ -31,10 +31,14 @@ fun solve(input: List<String>): String {
       programs.put(name, tower.last())
     }
 
+    //-----
+    // NOTE: this is overengineered, because instead of an actual parent a "has parent" flag would suffice!
+    //-----
+    
     // Set the parent of all programs except the first one (the root).
     for (i in tower.indices.drop(1)) {
-      // The parent of a program is its predecessor in the tower
-      tower.get(i).parent = tower.get(i - 1)
+      // The parent of a program is the root of its tower
+      tower.get(i).parent = tower.get(0)
     }
   }
 
