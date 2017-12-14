@@ -1,6 +1,14 @@
 import java.io.File
 import kotlin.math.*
 
+// !!!!!!!!!
+// !!!!!!!!!
+
+// Fails for input "n,se" (but solves the puzzle input)
+
+// !!!!!!!!!
+// !!!!!!!!!
+
 fun main(args: Array<String>) {
 
   val input = args.firstOrNull() ?: loadPuzzleInput()
@@ -45,16 +53,15 @@ fun solve(stepsString: String): Int {
   normalize(directions, 2, 5)
   println("normalized directions: ${directions}")
 
-  // Certain double-steps can be replaced with a single step in another direction:
-  // - 1 step north-east and 1 step north-west is equivalent to 1 step north
-  // - the same for south-east, south-west and south
-  collate(directions, 1, 5, 0)
-  collate(directions, 2, 4, 3)
+  // Pairs of steps in directions i and i + 2 can be replaced with one step in direction i + 1
+  for (i in 0..5) {
+    collate(directions, i, (i + 2) % 6, (i + 1) % 6)
+  }
   println("collated directions: ${directions}")
 
   // The number of steps is the number of steps left in the array
   val numberOfSteps = directions.fold(0) { total, next -> total + next }
-  
+
   val result = numberOfSteps
 
   return result
